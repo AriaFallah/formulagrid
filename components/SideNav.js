@@ -1,10 +1,18 @@
+import Modal from 'react-modal';
+
 view SideNav {
+  prop addFormula : Function
+  prop dispatch: Function
+
+  let newFormula = false;
+
   <header>
     <img class="overlayLogo" src="http://i.imgur.com/CNO4xjs.png"/>
     <img class="backgroundLogo" src="http://i.imgur.com/uAndrvf.png"/>
   </header>
+
   <nav>
-    <a>
+    <a onClick={() => newFormula = true}>
       <div class="fa fa-plus"></div>
       <span>new</span>
     </a>
@@ -13,6 +21,25 @@ view SideNav {
       <span>help</span>
     </a>
   </nav>
+
+  <Modal
+    isOpen={newFormula}
+    onRequestClose={() => newFormula = false}
+    style={modalStyle}
+  >
+    <div>Hello!</div>
+  </Modal>
+
+  const modalStyle = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)'
+    }
+  }
 
   $ = {
     backgroundColor: window.color.sidenav,
@@ -56,6 +83,7 @@ view SideNav {
   $a = {
     display: 'block',
     marginTop: '20px',
+    cursor: 'pointer'
   }
 
   $span = {

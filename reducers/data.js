@@ -1,4 +1,4 @@
-export const test = {};
+export const initialState = {};
 
 export const formulas = [
   {

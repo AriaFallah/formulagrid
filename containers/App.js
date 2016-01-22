@@ -6,14 +6,14 @@ import * as FormulaActions from '../actions/formula'
 class App extends Component {
   render() {
     return (
-      <Formula />
+      <Wrap {...this.props}/>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    todos: state.formulas
+    formulas: state.formulas
   }
 }
 

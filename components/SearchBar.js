@@ -1,6 +1,6 @@
 view SearchBar {
   <section>
-    <div>Search</div>
+    <label>Search</label>
     <input type='text'/>
   </section>
 
@@ -12,8 +12,7 @@ view SearchBar {
   }
 
   $section = {
-    width: '10%',
-    margin: 'auto',
-    textAlign: 'center',
+    width: '300px',
+    paddingLeft: '10px',
   }
 }
