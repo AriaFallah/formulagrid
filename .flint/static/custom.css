@@ -1,0 +1,110 @@
+input[type=text] {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid black;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  font-size: .875rem;
+  height: 2.3125rem;
+  margin: 0 0 1rem;
+  padding: .5rem;
+  transition: border-color .3s linear;
+  width: 100%;
+}
+
+input[type=text]:focus,
+input[type=text]:active {
+  border-color: rgb(88, 180, 255);
+  outline: 0;
+}
+
+@keyframes hexDash {
+  0% {
+    stroke-dasharray: 0,0,340%; }
+  10% {
+    stroke-dasharray: 0,20,340%; }
+  100% {
+    stroke-dasharray: 320%,20,340%; } }
+
+.hexagon {
+  overflow: hidden;
+  position: relative;
+  z-index: 1; }
+  .hexagon:hover {
+    animation: hexDash 1s infinite; }
+  .hexagon .overlay-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin: auto;
+    height: 100%; }
+    .hexagon .overlay-container .content {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      text-align: center; }
+  @media (min-width: 1200px) {
+    .hexagon {
+      width: 17.364%; }
+      .hexagon:nth-child(10n+6), .hexagon:nth-child(10n+7), .hexagon:nth-child(10n+8), .hexagon:nth-child(10n+9), .hexagon:nth-child(10n+10) {
+        margin-bottom: -4.2%;
+        margin-top: -4.2%;
+        transform: translateX(50%); }
+      .hexagon:nth-child(10n+6):last-child, .hexagon:nth-child(10n+7):last-child, .hexagon:nth-child(10n+8):last-child, .hexagon:nth-child(10n+9):last-child, .hexagon:nth-child(10n+10):last-child {
+        margin-bottom: 0; }
+      .hexagon:nth-child(10n+6) {
+        margin-left: .5%; }
+      .hexagon:nth-child(5n+2) {
+        margin-left: 1%;
+        margin-right: 1%; }
+      .hexagon:nth-child(5n+3), .hexagon:nth-child(5n+4) {
+        margin-right: 1%; } }
+  @media (max-width: 1200px) and (min-width: 993px) {
+    .hexagon {
+      width: 21.444%; }
+      .hexagon:nth-child(8n+5), .hexagon:nth-child(8n+6), .hexagon:nth-child(8n+7), .hexagon:nth-child(8n+8) {
+        margin-bottom: -5.298%;
+        margin-top: -5.298%;
+        transform: translateX(50%); }
+      .hexagon:nth-child(8n+5):last-child, .hexagon:nth-child(8n+6):last-child, .hexagon:nth-child(8n+7):last-child, .hexagon:nth-child(8n+8):last-child {
+        margin-bottom: 0; }
+      .hexagon:nth-child(8n+5) {
+        margin-left: .5%; }
+      .hexagon:nth-child(4n+2) {
+        margin-left: 1%;
+        margin-right: 1%; }
+      .hexagon:nth-child(4n+3) {
+        margin-right: 1%; } }
+  @media (max-width: 992px) and (min-width: 769px) {
+    .hexagon {
+      width: 27.857%; }
+      .hexagon:nth-child(6n+4), .hexagon:nth-child(6n+5), .hexagon:nth-child(6n+6) {
+        margin-bottom: -7.322%;
+        margin-top: -7.322%;
+        transform: translateX(50%); }
+      .hexagon:nth-child(6n+4):last-child, .hexagon:nth-child(6n+5):last-child, .hexagon:nth-child(6n+6):last-child {
+        margin-bottom: 0; }
+      .hexagon:nth-child(6n+4) {
+        margin-left: .5%; }
+      .hexagon:nth-child(3n+2) {
+        margin-left: 1%;
+        margin-right: 1%; } }
+  @media (max-width: 768px) {
+    .hexagon {
+      width: 39.4%; }
+      .hexagon:nth-child(4n+3), .hexagon:nth-child(4n+4) {
+        margin-bottom: -10.392%;
+        margin-top: -10.392%;
+        transform: translateX(50%); }
+      .hexagon:nth-child(4n+3):last-child, .hexagon:nth-child(4n+4):last-child {
+        margin-bottom: 0; }
+      .hexagon:nth-child(4n+3) {
+        margin-left: .5%; }
+      .hexagon:nth-child(2n+2) {
+        margin-left: 1%; } }
