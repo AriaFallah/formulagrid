@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import formulas from './formulas';
+import entities from './entities';
 
 const rootReducer = combineReducers({
-  formulas,
+  entities,
   form: formReducer
 });
 

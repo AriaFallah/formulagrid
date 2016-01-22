@@ -4,7 +4,7 @@ view Formula {
   prop name : String = 'Should be a string'
   prop formula : String = 'Should be a string'
   on.mount(() => drawHexagon(ReactDOM.findDOMNode(view)))
-  <div class="overlay-container">
+  <div onClick={view.props.onClick} class="overlay-container">
     <div class="content">
       <span>{name}</span>
       <span>{formula}</span>

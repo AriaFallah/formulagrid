@@ -1,7 +1,7 @@
-import { formulas } from './data';
+import entities from './data';
 import { ADD_FORMULA } from '../actions/formula';
 
-export default function formula(state = formulas, action) {
+export default function reducer(state = entities, action) {
   switch(action.type) {
     case ADD_FORMULA:
       return [
