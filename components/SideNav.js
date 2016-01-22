@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import NewFormulaForm from './forms/NewFormulaForm';
 
 view SideNav {
   prop addFormula : Function
@@ -25,10 +26,16 @@ view SideNav {
   <Modal
     isOpen={newFormula}
     onRequestClose={() => newFormula = false}
+    closeTimeoutMS={200}
     style={modalStyle}
   >
-    <div>Hello!</div>
+    <NewFormulaForm onSubmit={closeAndSubmit} />
   </Modal>
+
+  function closeAndSubmit(data) {
+    addFormula(data);
+    newFormula = false;
+  }
 
   const modalStyle = {
     content: {

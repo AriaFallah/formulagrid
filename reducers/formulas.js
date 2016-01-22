@@ -6,8 +6,8 @@ export default function formula(state = formulas, action) {
     case ADD_FORMULA:
       return [
         {
-          name: 'NEW',
-          formula: 'NEW'
+          name: action.name,
+          formula: action.formula
         },
         ...state
       ]
