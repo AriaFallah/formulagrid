@@ -4,6 +4,13 @@ import { reduxForm } from 'redux-form';
 const fields = ['name', 'formula'];
 
 class NewFormulaForm extends Component {
+  componentDidMount() {
+    // Focus on the first input
+    window.setTimeout(function() {
+      this.refs.name.focus()
+    }.bind(this), 0);
+  }
+
   render() {
     const { fields: { name, formula }, submitting, handleSubmit } = this.props;
     return (
@@ -11,7 +18,7 @@ class NewFormulaForm extends Component {
         <div>
           <label>Name</label>
           <div>
-            <input type="text" placeholder="Name" {...name}/>
+            <input ref="name" type="text" placeholder="Name" {...name}/>
           </div>
         </div>
         <div>
@@ -20,7 +27,7 @@ class NewFormulaForm extends Component {
             <input type="text" placeholder="Formula" {...formula}/>
           </div>
         </div>
-        <button disabled={submitting} onClick={handleSubmit}>
+        <button onClick={handleSubmit}>
           Submit
         </button>
       </form>

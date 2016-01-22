@@ -6,7 +6,7 @@ import * as FormulaActions from '../actions/formula'
 class App extends Component {
   render() {
     return (
-      <Wrap {...this.props}/>
+      <PageWrap {...this.props}/>
     );
   }
 }
