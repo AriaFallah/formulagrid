@@ -12,10 +12,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
-  return {
-    formulas: state.entities.formulas
-  }
+  return state;
 }
 
 function mapDispatchToProps(dispatch) {

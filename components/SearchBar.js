@@ -1,18 +1,14 @@
 view SearchBar {
-  <section>
-    <label>Search</label>
-    <input type='text'/>
-  </section>
+  <input type='text'/>
 
   $ = {
     backgroundColor: window.color.searchbar,
-    height: '75px',
+    height: 50,
     width: '100%',
-    paddingTop: '5px',
+    marginBottom: 5,
   }
 
-  $section = {
-    width: '300px',
-    paddingLeft: '10px',
+  $input = {
+    height: '100%'
   }
 }

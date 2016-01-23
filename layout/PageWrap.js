@@ -1,8 +1,12 @@
 view PageWrap {
   prop actions : Object
-  prop formulas : Array
+  prop formulas : Object
+  prop result : Array
+
+  console.log(formulas);
+
   <SideNav addFormula={actions.addFormula} />
-  <HomeView route="/" formulas={formulas}/>
+  <HomeView route="/" formulas={formulas} result={result} />
   <FormulaView route="/formulas/:id" />
 
   $ = {

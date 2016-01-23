@@ -16,5 +16,5 @@ const apiFormulas = [
   }
 ];
 
-const formula = new Schema('formula');
-export default normalize(apiFormulas, arrayOf(formula));
+const formulas = new Schema('formulas');
+export default normalize(apiFormulas, arrayOf(formulas));
