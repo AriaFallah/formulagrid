@@ -1,5 +1,5 @@
 const color = {};
-color.sidenav = 'rgb(24, 24, 26)';
-color.searchbar = 'rgb(228, 228, 228)';
+color.sidenav = 'rgb(26, 24, 24)';
+color.searchbar = 'rgb(250, 250, 250)';
 
 window.color = color;

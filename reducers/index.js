@@ -1,11 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import intialState from './data';
 import { ADD_FORMULA } from '../actions/formula';
 
-const { entities: { formulas }, result } = intialState
-
-function formulasReducer(state = formulas, action) {
+function formulasReducer(state = {}, action) {
   switch(action.type) {
     case ADD_FORMULA:
       return {
@@ -19,7 +16,7 @@ function formulasReducer(state = formulas, action) {
   }
 }
 
-function resultReducer(state = result, action) {
+function resultReducer(state = [], action) {
   switch (action.type) {
     case ADD_FORMULA:
       return [...state, action.id]

@@ -1,5 +1,5 @@
 view SearchBar {
-  <input type='text'/>
+  <input type='text' placeholder='Search'/>
 
   $ = {
     backgroundColor: window.color.searchbar,
@@ -9,6 +9,8 @@ view SearchBar {
   }
 
   $input = {
-    height: '100%'
+    height: '100%',
+    borderColor: 'rgb(186, 182, 182)',
+    borderWidth: 1,
   }
 }

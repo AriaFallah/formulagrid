@@ -33,6 +33,7 @@ view SideNav {
   </Modal>
 
   function closeAndSubmit(data) {
+    data.id = Math.floor(Math.random() * 100);
     addFormula(data);
     newFormula = false;
   }
@@ -55,6 +56,10 @@ view SideNav {
     maxWidth: 150,
     minWidth: 150,
     top: 0,
+  }
+
+  $div = {
+    cursor: 'pointer'
   }
 
   $header = {

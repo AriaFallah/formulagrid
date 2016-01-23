@@ -1,3 +1,5 @@
+import DevTools from '../containers/DevTools';
+
 view PageWrap {
   prop actions : Object
   prop formulas : Object
@@ -6,6 +8,7 @@ view PageWrap {
   <SideNav addFormula={actions.addFormula} />
   <HomeView route='/' formulas={formulas} result={result} />
   <FormulaView route='/formulas/:id' formulas={formulas} />
+  <DevTools/>
 
   $ = {
     display: 'flex',
