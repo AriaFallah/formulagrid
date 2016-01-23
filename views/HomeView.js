@@ -1,6 +1,9 @@
 view HomeView {
   prop formulas : Object
   prop result : Array
+  prop actions : Object
+
+  on.mount(actions.getFormulas);
 
   <SearchBar />
   <FormulaGrid>

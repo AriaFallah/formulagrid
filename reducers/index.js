@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { ADD_FORMULA } from '../actions/formula';
+import { ADD_FORMULA, GET_FORMULAS } from '../actions/formula';
 
 function formulasReducer(state = {}, action) {
   switch(action.type) {
@@ -11,6 +11,8 @@ function formulasReducer(state = {}, action) {
           ...action.formula
         }
       }
+    case GET_FORMULAS + '_FULFILLED':
+      return action.payload.entities.formulas;
     default:
       return state;
   }
@@ -20,6 +22,8 @@ function resultReducer(state = [], action) {
   switch (action.type) {
     case ADD_FORMULA:
       return [...state, action.id]
+    case GET_FORMULAS + '_FULFILLED':
+      return action.payload.result;
     default:
       return state;
   }
