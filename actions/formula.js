@@ -7,7 +7,3 @@ export function addFormula(formula) {
     formula,
   }
 }
-
-export function removeFormula(id) {
-  console.log('test');
-}

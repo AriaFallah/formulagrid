@@ -9,7 +9,7 @@ view HomeView {
       repeat={result}
       name={formulas[_].name}
       formula={formulas[_].formula}
-      onClick={() => console.log(_)}
+      onClick={Flint.router.link('/formulas/' + _)}
     />
   </FormulaGrid>
 

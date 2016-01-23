@@ -7,7 +7,7 @@ view SideNav {
 
   let newFormula = false;
 
-  <header>
+  <header onClick={Flint.router.link('/')}>
     <img class="overlayLogo" src="http://i.imgur.com/CNO4xjs.png"/>
     <img class="backgroundLogo" src="http://i.imgur.com/uAndrvf.png"/>
   </header>
@@ -52,14 +52,15 @@ view SideNav {
     backgroundColor: window.color.sidenav,
     height: '100%',
     left: 0,
-    maxWidth: '150px',
-    minWidth: '150px',
+    maxWidth: 150,
+    minWidth: 150,
     top: 0,
   }
 
   $header = {
-    height: '128px',
+    height: 128,
     position: 'relative',
+    cursor: 'pointer',
   }
 
   $img = {
@@ -72,12 +73,12 @@ view SideNav {
   }
 
   $overlayLogo = {
-    width: '100px',
+    width: 100,
     zIndex: 1,
   }
 
   $nav = {
-    marginTop: '20px',
+    marginTop: 20,
     textAlign: 'center',
   }
 
@@ -89,7 +90,7 @@ view SideNav {
 
   $a = {
     display: 'block',
-    marginTop: '20px',
+    marginTop: 20,
     cursor: 'pointer'
   }
 
