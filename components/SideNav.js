@@ -13,10 +13,10 @@ view SideNav {
   </header>
 
   <nav>
-    <a onClick={() => newFormula = true}>
+    <div onClick={() => newFormula = true}>
       <div class="fa fa-plus"></div>
       <span>new</span>
-    </a>
+    </div>
     <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank">
       <div class="fa fa-info"></div>
       <span>help</span>
