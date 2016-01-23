@@ -1,5 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import normalizrMiddleware from 'redux-normalizr-middleware';
+import promiseMiddleware from 'redux-promise-middleware';
+import thunkMiddleware from 'redux-thunk';
 import reducer from '../reducers';
 
-export const store = applyMiddleware(thunk)(createStore)(reducer, {});
+export const store = applyMiddleware(
+  thunkMiddleware,
+  promiseMiddleware,
+  normalizrMiddleware
+)(createStore)(reducer, {});
