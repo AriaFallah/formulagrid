@@ -3,7 +3,6 @@ export const ORDER_BY = Symbol('Order By');
 export default (store) => (next) => (action) => {
   const orderBy = action[ORDER_BY];
   if (orderBy && action.payload) {
-    console.log('hullo');
     const { key, isDate } = orderBy;
     const order = Object.keys(action.payload).sort((a, b) => {
       let x = a[key];

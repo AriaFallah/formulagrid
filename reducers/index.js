@@ -11,7 +11,7 @@ function formulasReducer(state = {}, action) {
           ...action.formula
         }
       }
-    case GET_FORMULAS + '_FULFILLED':
+    case GET_FORMULAS + '_RESOLVED':
       return action.payload;
     default:
       return state;
@@ -22,7 +22,7 @@ function resultReducer(state = [], action) {
   switch (action.type) {
     case ADD_FORMULA:
       return [...state, action.id]
-    case GET_FORMULAS + '_FULFILLED':
+    case GET_FORMULAS + '_RESOLVED':
       return action.order;
     default:
       return state;
