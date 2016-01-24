@@ -1,40 +1,25 @@
-import { Schema } from 'normalizr';
-import Firebase from 'firebase';
-import pwrap from 'pwrap';
-
-const formulaSchema = new Schema('formulas');
-const firebase = new Firebase('https://sizzling-heat-5193.firebaseio.com/formulas');
-
-const getData = pwrap()(function(db, resolve, reject) {
-  db.on('value', (data) => {
-    const test = [];
-    data.forEach((d) => {
-      const obj = { ...d.val(), id: d.key() };
-      test.push(obj);
-    });
-    resolve(test);
-  });
-});
-
-export const ADD_FORMULA = 'ADD_FORMULA';
-export const GET_FORMULAS = 'GET_FORMULAS';
+import { CALL_API } from '../middleware/api.js';
+import { ADD_FORMULA, GET_FORMULA, GET_FORMULAS,
+         ARTICLES_ENDPOINT, FORMULAS_ENDPOINT, VIDEOS_ENDPOINT
+       } from '../constants.js';
 
 export function addFormula(formula) {
   return {
     type: ADD_FORMULA,
-    formula,
-    id: formula.id,
+    [CALL_API]: {
+      endpoint: FORMULAS_ENDPOINT,
+      method: 'POST',
+      data: formula
+    },
   }
 }
 
 export function getFormulas() {
   return {
     type: GET_FORMULAS,
-    payload: {
-      promise: getData(firebase)
-    },
-    meta: {
-      schema: formulaSchema
+    [CALL_API]: {
+      endpoint: FORMULAS_ENDPOINT,
+      method: 'GET',
     },
   }
 }

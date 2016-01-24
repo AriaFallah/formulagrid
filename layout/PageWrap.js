@@ -5,6 +5,8 @@ view PageWrap {
   prop formulas : Object
   prop result : Array
 
+  on.mount(actions.getFormulas);
+
   <SideNav addFormula={actions.addFormula} />
   <HomeView route='/' {...view.props} />
   <FormulaView route='/formulas/:id' formulas={formulas} />

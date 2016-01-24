@@ -4,6 +4,13 @@ import { connect } from 'react-redux'
 import * as FormulaActions from '../actions/formula'
 
 class App extends Component {
+  componentDidMount() {
+    // Hack to make the route change
+    Flint.router.onChange(function() {
+      this.forceUpdate();
+    }.bind(this));
+  }
+
   render() {
     return (
       <PageWrap {...this.props}/>

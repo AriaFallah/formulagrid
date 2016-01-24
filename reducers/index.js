@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { ADD_FORMULA, GET_FORMULAS } from '../actions/formula';
+import { ADD_FORMULA, GET_FORMULAS } from '../constants';
 
 function formulasReducer(state = {}, action) {
   switch(action.type) {
@@ -12,7 +12,7 @@ function formulasReducer(state = {}, action) {
         }
       }
     case GET_FORMULAS + '_FULFILLED':
-      return action.payload.entities.formulas;
+      return action.payload.formulas;
     default:
       return state;
   }
