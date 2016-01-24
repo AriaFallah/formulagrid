@@ -2,16 +2,17 @@ export const ORDER_BY = Symbol('Order By');
 
 export default (store) => (next) => (action) => {
   const orderBy = action[ORDER_BY];
-  if (orderBy && action.payload) {
+  const { payload } = action;
+  if (orderBy && payload) {
     const { key, isDate } = orderBy;
-    const order = Object.keys(action.payload).sort((a, b) => {
-      let x = a[key];
-      let y = b[key];
+    const order = Object.keys(payload).sort((a, b) => {
+      let x = payload[a][key];
+      let y = payload[b][key];
       if (isDate) {
         x = Date(x);
         y = Date(y);
       }
-      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      return x - y;
     });
     return next({ ...action, order });
   }
