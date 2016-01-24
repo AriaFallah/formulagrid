@@ -1,2 +1,3 @@
-# formulagrid
+# FormulaGrid
+
 Realtime formula database

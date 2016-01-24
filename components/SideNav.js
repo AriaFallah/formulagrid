@@ -1,5 +1,4 @@
 import Modal from 'react-modal';
-import NewFormulaForm from './forms/NewFormulaForm';
 
 view SideNav {
   prop addFormula : Function
