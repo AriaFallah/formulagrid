@@ -1,5 +1,5 @@
+import { PROMISE } from './promise';
 const API_ROOT = 'https://sizzling-heat-5193.firebaseio.com/';
-export const CALL_API = Symbol('Call API');
 
 function callApi({ endpoint, method, data }) {
   const url = API_ROOT + endpoint;
@@ -17,6 +17,7 @@ function callApi({ endpoint, method, data }) {
   }
 }
 
+export const CALL_API = Symbol('Call API');
 export default (store) => (next) => (action) => {
   const options = action[CALL_API];
   if (typeof options !== 'object') {
@@ -25,9 +26,7 @@ export default (store) => (next) => (action) => {
   const result = callApi(options);
   if (!result) return next(action);
 
-  return next({
-    ...action,
-    payload: {
-      promise: result.then((response) => response.json())
-    }});
+  // Takes advantage of promise middleware
+  action[PROMISE].promise = result.then((response) => response.json());
+  return next(action);
 }

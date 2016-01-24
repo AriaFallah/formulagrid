@@ -1,4 +1,6 @@
-import { CALL_API } from '../middleware/api.js';
+import { CALL_API } from '../middleware/api';
+import { ORDER_BY } from '../middleware/ordering';
+import { PROMISE } from '../middleware/promise';
 import { ADD_FORMULA, GET_FORMULA, GET_FORMULAS,
          ARTICLES_ENDPOINT, FORMULAS_ENDPOINT, VIDEOS_ENDPOINT
        } from '../constants.js';
@@ -21,5 +23,12 @@ export function getFormulas() {
       endpoint: FORMULAS_ENDPOINT,
       method: 'GET',
     },
+    [PROMISE]: {
+      resolvedActions: {
+        [ORDER_BY]: {
+          key: 'name'
+        }
+      }
+    }
   }
 }

@@ -1,13 +1,13 @@
 view HomeView {
   prop formulas : Object
-  prop result : Array
+  prop order : Array
   prop actions : Object
 
   <SearchBar />
   <FormulaGrid>
     <Formula
       class="hexagon"
-      repeat={result}
+      repeat={order}
       name={formulas[_].name}
       formula={formulas[_].formula}
       onClick={Flint.router.link('/formulas/' + _)}

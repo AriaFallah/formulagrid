@@ -12,7 +12,7 @@ function formulasReducer(state = {}, action) {
         }
       }
     case GET_FORMULAS + '_FULFILLED':
-      return action.payload.formulas;
+      return action.payload;
     default:
       return state;
   }
@@ -23,7 +23,7 @@ function resultReducer(state = [], action) {
     case ADD_FORMULA:
       return [...state, action.id]
     case GET_FORMULAS + '_FULFILLED':
-      return action.payload.result;
+      return action.order;
     default:
       return state;
   }
@@ -31,7 +31,7 @@ function resultReducer(state = [], action) {
 
 const rootReducer = combineReducers({
   formulas: formulasReducer,
-  result: resultReducer,
+  order: resultReducer,
   form: formReducer,
 });
 
