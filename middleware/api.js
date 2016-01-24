@@ -27,6 +27,7 @@ export default (store) => (next) => (action) => {
   if (!result) return next(action);
 
   // Takes advantage of promise middleware
+  if (!action[PROMISE]) action[PROMISE] = {};
   action[PROMISE].promise = result.then((response) => response.json());
   return next(action);
 }
