@@ -2,34 +2,52 @@ import { PROMISE } from './promise';
 const API_ROOT = 'https://sizzling-heat-5193.firebaseio.com/';
 
 function callApi({ endpoint, method, data }) {
-  const url = API_ROOT + endpoint;
+  const url = API_ROOT + endpoint
   switch(method) {
     case 'GET':
-      return window.fetch(url);
+      return window.fetch(url)
     case 'POST':
-      return window.fetch(url);
+      return window.fetch(url)
     case 'PUT':
-      return window.fetch(url);
+      return window.fetch(url)
     case 'PATCH':
-      return window.fetch(url);
+      return window.fetch(url)
     case 'DELETE':
-      return window.fetch(url);
+      return window.fetch(url)
     default:
-      return null;
+      return null
   }
 }
 
-export const CALL_API = Symbol('Call API');
-export default (store) => (next) => (action) => {
-  const options = action[CALL_API];
-  if (typeof options !== 'object') {
-    return next(action);
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response
+  } else {
+    var error = new Error(response.statusText)
+    error.response = response
+    throw error
   }
-  const result = callApi(options);
-  if (!result) return next(action);
+}
+
+function parseJSON(response) {
+  return response.json()
+}
+
+export const CALL_API = Symbol('Call API')
+export default (store) => (next) => (action) => {
+  const options = action[CALL_API]
+  if (typeof options !== 'object') {
+    return next(action)
+  }
+  const result = callApi(options)
+  if (!result) return next(action)
 
   // Takes advantage of promise middleware
-  if (!action[PROMISE]) action[PROMISE] = {};
-  action[PROMISE].promise = result.then((response) => response.json());
-  return next(action);
+  if (!action[PROMISE]) action[PROMISE] = {}
+  action[PROMISE].promise =
+    result
+      .then(checkStatus)
+      .then(parseJSON)
+
+  return next(action)
 }
