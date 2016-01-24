@@ -2,18 +2,22 @@ import { PROMISE } from './promise';
 const API_ROOT = 'https://sizzling-heat-5193.firebaseio.com/';
 
 function callApi({ endpoint, method, data }) {
+  const options = {
+    method,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  }
   const url = API_ROOT + endpoint
   switch(method) {
     case 'GET':
-      return window.fetch(url)
-    case 'POST':
-      return window.fetch(url)
-    case 'PUT':
-      return window.fetch(url)
-    case 'PATCH':
-      return window.fetch(url)
     case 'DELETE':
-      return window.fetch(url)
+      return window.fetch(url, options)
+    case 'POST':
+    case 'PUT':
+    case 'PATCH':
+      return window.fetch(url, { ...options, body: JSON.stringify(data) })
     default:
       return null
   }
