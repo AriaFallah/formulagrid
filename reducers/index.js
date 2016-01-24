@@ -4,10 +4,10 @@ import { ADD_FORMULA, GET_FORMULAS } from '../constants';
 
 function formulasReducer(state = {}, action) {
   switch(action.type) {
-    case ADD_FORMULA:
+    case ADD_FORMULA + '_RESOLVED':
       return {
         ...state,
-        [action.id]: {
+        [action.payload]: {
           ...action.formula
         }
       }
@@ -20,8 +20,8 @@ function formulasReducer(state = {}, action) {
 
 function resultReducer(state = [], action) {
   switch (action.type) {
-    case ADD_FORMULA:
-      return [...state, action.id]
+    case ADD_FORMULA + '_RESOLVED':
+      return [...state, action.payload]
     case GET_FORMULAS + '_RESOLVED':
       return action.order;
     default:

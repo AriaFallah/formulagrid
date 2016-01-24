@@ -13,6 +13,11 @@ export function addFormula(formula) {
       method: 'POST',
       data: formula
     },
+    [PROMISE]: {
+      resolvedActions: {
+        formula
+      }
+    }
   }
 }
 
@@ -26,7 +31,7 @@ export function getFormulas() {
     [PROMISE]: {
       resolvedActions: {
         [ORDER_BY]: {
-          key: 'name'
+          key: 'formula'
         }
       }
     }
