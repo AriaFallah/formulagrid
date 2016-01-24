@@ -7,7 +7,10 @@ class App extends Component {
   componentDidMount() {
     // Hack to make the route change
     Flint.router.onChange(function() {
-      this.forceUpdate();
+      // setTimeout to prevent errors
+      setTimeout(function() {
+        this.forceUpdate();
+      }.bind(this), 0);
     }.bind(this));
   }
 
