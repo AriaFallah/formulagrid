@@ -1,32 +1,48 @@
-const PENDING = 'PENDING';
-const RESOLVED = 'RESOLVED';
-const REJECTED = 'REJECTED';
+const PENDING = 'PENDING'
+const RESOLVED = 'RESOLVED'
+const REJECTED = 'REJECTED'
 
-export const PROMISE = Symbol('Promise');
+function isPromise(promise) {
+  return promise && typeof promise.then === 'function'
+}
+
+export const PROMISE = Symbol('Promise')
 export default ({ dispatch }) => {
   return next => action => {
-    if (!action[PROMISE]) return next(action);
+    if (!action[PROMISE]) return next(action)
 
-    const { type } = action;
-    const { promise, resolvedActions, rejectedActions } = action[PROMISE];
-    if (!promise || typeof promise.then !== 'function') {
-      return next(action);
+    let { type } = action
+    const { promise, resolvedActions, rejectedActions } = action[PROMISE]
+    if (!isPromise(promise)) {
+      return next(action)
     }
+
+    // Preserve type in case of promise chaining
+    const originalType = action[PROMISE].originalType || type
+    type = `${type}_${PENDING}`
 
     // Destroys the original action.
     // Might change in the future if other middleware need the promise
-    next({ type: `${type}_${PENDING}` });
+    next({ type })
 
     promise
-      .then((result) =>
-        dispatch({
-          type: `${type}_${RESOLVED}`,
-          payload: result,
-          ...resolvedActions
+      .then((result) => !isPromise(result)
+        ? dispatch({
+            type: `${originalType}_${RESOLVED}`,
+            payload: result,
+            ...resolvedActions
+          })
+        : dispatch({
+            type: `${type}_${PENDING}`,
+            [PROMISE]: {
+              promise: result,
+              resolvedActions,
+              rejectedActions
+            }
         }))
       .catch((error) =>
         dispatch({
-          type: `${type}_${REJECTED}`,
+          type: `${originalType}_${REJECTED}`,
           payload: error,
           ...rejectedActions
         }))

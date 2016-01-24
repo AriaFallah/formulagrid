@@ -24,7 +24,7 @@ view App {
   on.mount(actions.getFormulas);
 
   <SideNav addFormula={actions.addFormula} />
-  <HomeView route='/' {...view.props} />
+  <HomeView route='/' yield />
   <FormulaView route='/formulas/:id' formulas={formulas} />
 
   $ = {

@@ -10,6 +10,8 @@ function callApi({ endpoint, method, data }) {
       return window.fetch(url);
     case 'PUT':
       return window.fetch(url);
+    case 'PATCH':
+      return window.fetch(url);
     case 'DELETE':
       return window.fetch(url);
     default:
