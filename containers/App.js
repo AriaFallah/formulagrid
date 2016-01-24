@@ -3,24 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as FormulaActions from '../actions/formula'
 
-class App extends Component {
-  componentDidMount() {
-    // Hack to make the route change
-    Flint.router.onChange(function() {
-      // setTimeout to prevent errors
-      setTimeout(function() {
-        this.forceUpdate();
-      }.bind(this), 0);
-    }.bind(this));
-  }
-
-  render() {
-    return (
-      <PageWrap {...this.props}/>
-    );
-  }
-}
-
 function mapStateToProps(state) {
   return state;
 }
@@ -31,7 +13,25 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+Flint._decorateView('App', (app) =>
+  connect(mapStateToProps, mapDispatchToProps)(app)
+);
+
+view App {
+  prop actions : Object
+  prop formulas : Object
+  prop result : Array
+
+  on.mount(actions.getFormulas);
+
+  <SideNav addFormula={actions.addFormula} />
+  <HomeView route='/' {...view.props} />
+  <FormulaView route='/formulas/:id' formulas={formulas} />
+
+  $ = {
+    display: 'flex',
+    height: '100%',
+    width: '100%',
+    position: 'fixed',
+  }
+}

@@ -3,7 +3,6 @@ import apiMiddleware from '../middleware/api';
 import orderMiddleware from '../middleware/ordering';
 import promiseMiddleware from '../middleware/promise';
 import reducer from '../reducers';
-import DevTools from '../containers/DevTools';
 
 const middleware = compose(
   applyMiddleware(
@@ -11,7 +10,7 @@ const middleware = compose(
     promiseMiddleware,
     orderMiddleware,
   ),
-  DevTools.instrument()
+  window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
 export const store = middleware(createStore)(reducer, {});

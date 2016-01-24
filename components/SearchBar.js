@@ -11,6 +11,7 @@ view SearchBar {
   $input = {
     height: '100%',
     borderColor: 'rgb(186, 182, 182)',
-    borderWidth: 1,
+    borderWidth: 2,
+    boxShadow: [0, 1, 3, 'rgb(186, 182, 182)']
   }
 }
