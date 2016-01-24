@@ -1,21 +1,33 @@
 const API_ROOT = 'https://sizzling-heat-5193.firebaseio.com/';
+export const CALL_API = Symbol('Call API');
 
-export const CALL_API = Symbol('Call API')
-
-export default store => next => action => {
-  const callAPI = action[CALL_API];
-  if (typeof callAPI === 'undefined') {
-    return next(action);
-  }
-
-  const { endpoint, method, data, auth } = callAPI;
+function callApi({ endpoint, method, data }) {
+  const url = API_ROOT + endpoint;
   switch(method) {
     case 'GET':
-      return next({ ...action, payload: { promise: window.fetch(endpoint) } });
+      return window.fetch(url);
     case 'POST':
+      return window.fetch(url);
     case 'PUT':
+      return window.fetch(url);
     case 'DELETE':
+      return window.fetch(url);
     default:
-      next(action);
+      return null;
   }
+}
+
+export default (store) => (next) => (action) => {
+  const options = action[CALL_API];
+  if (typeof options !== 'object') {
+    return next(action);
+  }
+  const result = callApi(options);
+  if (!result) return next(action);
+
+  return next({
+    ...action,
+    payload: {
+      promise: result.then((response) => response.json())
+    }});
 }
