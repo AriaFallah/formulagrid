@@ -6,7 +6,7 @@ view HomeView {
   on.mount(actions.getFormulas);
 
   <SearchBar />
-  <section class="formulagrid">
+  {/*<section class="formulagrid">
     <Formula
       class="hexagon"
       repeat={order}
@@ -14,7 +14,7 @@ view HomeView {
       formula={formulas[_].formula}
       onClick={Flint.router.link('/formulas/' + _)}
     />
-  </section>
+  </section>*/}
 
   // TODO Add a table as an alternative to the grid
 

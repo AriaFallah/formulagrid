@@ -27,24 +27,8 @@ function formulasReducer(state = {}, action) {
   }
 }
 
-function orderReducer(state = [], action) {
-  switch (action.type) {
-    case ADD_FORMULA + '_RESOLVED':
-      return [action.payload.name, ...state]
-    case GET_FORMULA + '_RESOLVED':
-    case GET_FORMULA + '_REJECTED':
-      return [action.id]
-    case GET_FORMULAS + '_RESOLVED':
-      const newState = action.order || []
-      return newState;
-    default:
-      return state;
-  }
-}
-
 const rootReducer = combineReducers({
   formulas: formulasReducer,
-  order: orderReducer,
   form: formReducer,
 });
 
