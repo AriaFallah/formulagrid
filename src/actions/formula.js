@@ -1,3 +1,4 @@
+import Firebase from 'firebase';
 import { CALL_API } from '../middleware/api';
 import { ORDER_BY } from '../middleware/ordering';
 import { PROMISE } from '../middleware/promise';
@@ -11,7 +12,7 @@ export function addFormula(formula) {
     [CALL_API]: {
       endpoint: FORMULAS_ENDPOINT + '.json',
       method: 'POST',
-      data: formula
+      data: { ...formula, timestamp: Firebase.ServerValue.TIMESTAMP }
     },
     [PROMISE]: {
       resolvedAction: {
@@ -49,7 +50,7 @@ export function getFormulas() {
     [PROMISE]: {
       resolvedAction: {
         [ORDER_BY]: {
-          key: 'formula'
+          key: 'timestamp'
         }
       }
     }

@@ -6,7 +6,7 @@ function formulasReducer(state = {}, action) {
   switch(action.type) {
     case ADD_FORMULA + '_RESOLVED':
       return {
-        [action.payload]: {
+        [action.payload.name]: {
           ...action.formula
         },
         ...state
@@ -20,7 +20,8 @@ function formulasReducer(state = {}, action) {
         [action.id]: null
       }
     case GET_FORMULAS + '_RESOLVED':
-      return action.payload
+      const newState = action.payload || {}
+      return newState
     default:
       return state;
   }
@@ -29,12 +30,13 @@ function formulasReducer(state = {}, action) {
 function orderReducer(state = [], action) {
   switch (action.type) {
     case ADD_FORMULA + '_RESOLVED':
-      return [action.payload, ...state]
+      return [action.payload.name, ...state]
     case GET_FORMULA + '_RESOLVED':
     case GET_FORMULA + '_REJECTED':
       return [action.id]
     case GET_FORMULAS + '_RESOLVED':
-      return action.order;
+      const newState = action.order || []
+      return newState;
     default:
       return state;
   }
