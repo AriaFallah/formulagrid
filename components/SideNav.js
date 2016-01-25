@@ -32,7 +32,6 @@ view SideNav {
   </Modal>
 
   function closeAndSubmit(data) {
-    data.id = Math.floor(Math.random() * 100);
     addFormula(data);
     newFormula = false;
   }

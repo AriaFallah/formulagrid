@@ -9,13 +9,31 @@ export function addFormula(formula) {
   return {
     type: ADD_FORMULA,
     [CALL_API]: {
-      endpoint: FORMULAS_ENDPOINT,
+      endpoint: FORMULAS_ENDPOINT + '.json',
       method: 'POST',
       data: formula
     },
     [PROMISE]: {
-      resolvedActions: {
+      resolvedAction: {
         formula
+      }
+    }
+  }
+}
+
+export function getFormula(id) {
+  return {
+    type: GET_FORMULA,
+    [CALL_API]: {
+      endpoint: FORMULAS_ENDPOINT + '/' + id + '.json',
+      method: 'GET',
+    },
+    [PROMISE]: {
+      resolvedAction: {
+        id
+      },
+      rejectedAction: {
+        id
       }
     }
   }
@@ -25,11 +43,11 @@ export function getFormulas() {
   return {
     type: GET_FORMULAS,
     [CALL_API]: {
-      endpoint: FORMULAS_ENDPOINT,
+      endpoint: FORMULAS_ENDPOINT + '.json',
       method: 'GET',
     },
     [PROMISE]: {
-      resolvedActions: {
+      resolvedAction: {
         [ORDER_BY]: {
           key: 'formula'
         }

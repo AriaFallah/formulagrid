@@ -12,7 +12,7 @@ export default ({ dispatch }) => {
     if (!action[PROMISE]) return next(action)
 
     let { type } = action
-    const { promise, resolvedActions, rejectedActions } = action[PROMISE]
+    const { promise, resolvedAction, rejectedAction } = action[PROMISE]
     if (!isPromise(promise)) {
       return next(action)
     }
@@ -30,21 +30,21 @@ export default ({ dispatch }) => {
         ? dispatch({
             type: `${originalType}_${RESOLVED}`,
             payload: result,
-            ...resolvedActions
+            ...resolvedAction
           })
         : dispatch({
             type: `${type}_${PENDING}`,
             [PROMISE]: {
               promise: result,
-              resolvedActions,
-              rejectedActions
+              resolvedAction,
+              rejectedAction
             }
         }))
       .catch((error) =>
         dispatch({
           type: `${originalType}_${REJECTED}`,
           payload: error,
-          ...rejectedActions
+          ...rejectedAction
         }))
   };
 }

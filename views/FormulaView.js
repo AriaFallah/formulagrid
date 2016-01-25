@@ -1,9 +1,14 @@
 view FormulaView {
   prop formulas : Object
+  prop actions : Object
 
   const { id } = Flint.router.params;
-  const formula = formulas[id];
+  if (!formulas[id]) actions.getFormula(id);
 
-  <h1>{formula.name}</h1>
-  <h1>{formula.formula}</h1>
+  <div if={formulas[id]}>
+    <h1>{formulas[id].name}</h1>
+    <h1>{formulas[id].formula}</h1>
+  </div>
+
+  <h1 if={formulas[id] === null}>Not Found!</h1>
 }
