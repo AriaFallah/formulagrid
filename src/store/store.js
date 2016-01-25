@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import apiMiddleware from '../middleware/api';
+import parseMiddleware from '../middleware/parse-middleware'
 import orderMiddleware from '../middleware/ordering';
 import promiseMiddleware from '../middleware/promise';
 import reducer from '../reducers';
 
 const middleware = compose(
   applyMiddleware(
-    apiMiddleware,
+    parseMiddleware,
     promiseMiddleware,
     orderMiddleware,
   ),

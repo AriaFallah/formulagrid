@@ -1,18 +1,17 @@
-import Firebase from 'firebase';
-import { CALL_API } from '../middleware/api';
+import { PARSE } from '../middleware/parse-middleware';
 import { ORDER_BY } from '../middleware/ordering';
 import { PROMISE } from '../middleware/promise';
-import { ADD_FORMULA, GET_FORMULA, GET_FORMULAS,
-         ARTICLES_ENDPOINT, FORMULAS_ENDPOINT, VIDEOS_ENDPOINT
+import { ADD_FORMULA, GET_FORMULA,
+         GET_FORMULAS, FORMULA_CLASS,
        } from '../constants.js';
 
 export function addFormula(formula) {
   return {
     type: ADD_FORMULA,
-    [CALL_API]: {
-      endpoint: FORMULAS_ENDPOINT + '.json',
+    [PARSE]: {
+      parseClass: new FORMULA_CLASS(),
       method: 'POST',
-      data: { ...formula, timestamp: Firebase.ServerValue.TIMESTAMP }
+      data: formula
     },
     [PROMISE]: {
       resolvedAction: {
@@ -25,8 +24,8 @@ export function addFormula(formula) {
 export function getFormula(id) {
   return {
     type: GET_FORMULA,
-    [CALL_API]: {
-      endpoint: FORMULAS_ENDPOINT + '/' + id + '.json',
+    [PARSE]: {
+      parseClass: new FORMULA_CLASS(),
       method: 'GET',
     },
     [PROMISE]: {
@@ -43,14 +42,15 @@ export function getFormula(id) {
 export function getFormulas() {
   return {
     type: GET_FORMULAS,
-    [CALL_API]: {
-      endpoint: FORMULAS_ENDPOINT + '.json',
+    [PARSE]: {
+      parseClass: new FORMULA_CLASS(),
       method: 'GET',
     },
     [PROMISE]: {
       resolvedAction: {
         [ORDER_BY]: {
-          key: 'timestamp'
+          key: 'createdAt',
+          isDate: true,
         }
       }
     }

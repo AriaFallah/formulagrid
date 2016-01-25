@@ -24,7 +24,6 @@ export default ({ dispatch }) => {
     // Destroys the original action.
     // Might change in the future if other middleware need the promise
     next({ type })
-
     promise
       .then((result) => !isPromise(result)
         ? dispatch({
