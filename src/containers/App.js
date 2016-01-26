@@ -1,20 +1,20 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as FormulaActions from '../actions/formula'
+import * as actions from '../actions'
 
 function mapStateToProps(state) {
-  return state;
+  return state
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(FormulaActions, dispatch)
+    actions: bindActionCreators(actions, dispatch)
   }
 }
 
 Flint._decorateView('App', (app) =>
   connect(mapStateToProps, mapDispatchToProps)(app)
-);
+)
 
 view App {
   prop actions : Object

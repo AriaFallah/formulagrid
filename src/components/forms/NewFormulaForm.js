@@ -1,13 +1,13 @@
-import { reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form'
 
-const fields = ['name', 'formula'];
+const fields = ['name', 'formula']
 
 Flint._decorateView('NewFormulaForm', (form) =>
   reduxForm({ form: 'newFormula', fields })(form)
-);
+)
 
 view NewFormulaForm {
-  const { fields: { name, formula }, submitting, handleSubmit } = this.props;
+  const { fields: { name, formula }, submitting, handleSubmit } = this.props
   <form>
     <div>
       <label>Name</label>

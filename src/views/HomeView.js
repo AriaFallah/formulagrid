@@ -3,7 +3,7 @@ view HomeView {
   prop order : Array
   prop actions : Object
 
-  on.mount(actions.getFormulas);
+  on.mount(actions.getFormula)
 
   <SearchBar />
   {/*<section class="formulagrid">

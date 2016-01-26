@@ -1,10 +1,10 @@
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 
 view SideNav {
   prop addFormula : Function
   prop dispatch: Function
 
-  let newFormula = false;
+  let newFormula = false
 
   <header onClick={Flint.router.link('/')}>
     <img class="overlayLogo" src="http://i.imgur.com/CNO4xjs.png"/>
@@ -32,8 +32,8 @@ view SideNav {
   </Modal>
 
   function closeAndSubmit(data) {
-    addFormula(data);
-    newFormula = false;
+    addFormula(data)
+    newFormula = false
   }
 
   const modalStyle = {
