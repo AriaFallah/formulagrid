@@ -3,6 +3,6 @@ import { store } from './store'
 
 view Main {
   <Provider store={store}>
-    <App/>
+    <App />
   </Provider>
 }

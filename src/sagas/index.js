@@ -9,7 +9,7 @@ const createPromiseLifecycle = (base) => ({
   REJECTED: `${base}_REJECTED`
 })
 
-function* doPromise(action) {
+function* handlePromise(action) {
   const lifecycle = createPromiseLifecycle(action.type)
 
   // Put out the fact the promise is pending
@@ -40,7 +40,7 @@ function* apiCall() {
     const { type, payload: { method, options } } = yield take((action) => action[actions.API])
 
     // Pass on the pending API call to the promise saga
-    yield fork(doPromise, {
+    yield fork(handlePromise, {
       type,
       payload: {
         promise: call(api[method], options)
@@ -49,15 +49,6 @@ function* apiCall() {
   }
 }
 
-function* promise() {
-  while(true) {
-    // Grab all actions with the PROMISE intention
-    const action = yield take((action) => action[actions.PROMISE])
-    yield fork(doPromise, action)
-  }
-}
-
 export default function* root(getState) {
   yield fork(apiCall)
-  yield fork(promise)
 }

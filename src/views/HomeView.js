@@ -5,16 +5,17 @@ view HomeView {
 
   // Request the formulas from the server
   on.mount(actions.getFormula)
-  
+
   <SearchBar />
   <section class="formulagrid">
     <Formula
-      class="hexagon"
+      className="hexagon"
       repeat={result}
       name={formulas[_].get('name')}
       formula={formulas[_].get('formula')}
       onClick={Flint.router.link('/formulas/' + _)}
     />
+    <div repeat={5}></div>
   </section>
 
   // TODO Add a table as an alternative to the grid
@@ -24,6 +25,10 @@ view HomeView {
     height: '100%',
     paddingBottom: '75px',
     overflowY: 'scroll',
+  }
+
+  $div = {
+    display: 'none'
   }
 
   $formulagrid = {

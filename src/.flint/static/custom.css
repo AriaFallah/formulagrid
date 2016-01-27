@@ -64,7 +64,6 @@ input[type=text]:focus, input[type=text]:active {
 .hexagon {
   overflow: hidden;
   position: relative;
-  height: calc(100%) z-index: 1;
 }
 .hexagon:hover {
   animation: hexDash 1s infinite;
@@ -95,9 +94,6 @@ input[type=text]:focus, input[type=text]:active {
     margin-top: -4.2%;
     transform: translateX(50%);
   }
-  .hexagon:nth-child(10n+6):last-child, .hexagon:nth-child(10n+7):last-child, .hexagon:nth-child(10n+8):last-child, .hexagon:nth-child(10n+9):last-child, .hexagon:nth-child(10n+10):last-child {
-    margin-bottom: 0;
-  }
   .hexagon:nth-child(10n+6) {
     margin-left: .5%;
   }
@@ -117,9 +113,6 @@ input[type=text]:focus, input[type=text]:active {
     margin-bottom: -5.298%;
     margin-top: -5.298%;
     transform: translateX(50%);
-  }
-  .hexagon:nth-child(8n+5):last-child, .hexagon:nth-child(8n+6):last-child, .hexagon:nth-child(8n+7):last-child, .hexagon:nth-child(8n+8):last-child {
-    margin-bottom: 0;
   }
   .hexagon:nth-child(8n+5) {
     margin-left: .5%;
@@ -141,9 +134,6 @@ input[type=text]:focus, input[type=text]:active {
     margin-top: -7.322%;
     transform: translateX(50%);
   }
-  .hexagon:nth-child(6n+4):last-child, .hexagon:nth-child(6n+5):last-child, .hexagon:nth-child(6n+6):last-child {
-    margin-bottom: 0;
-  }
   .hexagon:nth-child(6n+4) {
     margin-left: .5%;
   }
@@ -160,9 +150,6 @@ input[type=text]:focus, input[type=text]:active {
     margin-bottom: -10.392%;
     margin-top: -10.392%;
     transform: translateX(50%);
-  }
-  .hexagon:nth-child(4n+3):last-child, .hexagon:nth-child(4n+4):last-child {
-    margin-bottom: 0;
   }
   .hexagon:nth-child(4n+3) {
     margin-left: .5%;
