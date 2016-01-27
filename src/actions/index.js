@@ -3,30 +3,31 @@ import Parse from 'parse'
 // Flatten an action
 const action = (type, payload = {}) => ({ type, ...payload })
 
-const createActionTypes = (base) => ({
+// Create lifecycle of an action
+const createActionLifecycle = (base) => ({
   REQUEST:  `${base}_REQUEST`,
   RESOLVED: `${base}_RESOLVED`,
   REJECTED: `${base}_REJECTED`
 })
 
-// Action handler that generates API requests
-const createActionHandler = (type) => ({
+// Each action is a request that resolves or rejects
+const createLifecycleHandler = (type) => ({
   request:  (options)  => action(`${type}_REQUEST`,  { options }),
-  resolved: (response) => action(`${type}_RESOLVED`, { ...response }),
+  resolved: (response) => action(`${type}_RESOLVED`, { response }),
   rejected: (error)    => action(`${type}_REJECTED`, { error }),
 })
 
-// General actions
-export const FORMULA = createActionTypes('FORMULA')
+// Actions
+export const ADD_FORMULA    = createActionLifecycle('ADD_FORMULA')
+export const GET_FORMULA    = createActionLifecycle('GET_FORMULA')
+export const EDIT_FORMULA   = createActionLifecycle('EDIT_FORMULA')
+export const DELETE_FORMULA = createActionLifecycle('DELETE_FORMULA')
 
-// General action handlers
-export const formulaHandler = createActionHandler('FORMULA')
-
-// Entity actions
-export const ADD_FORMULA    = 'ADD_FORMULA'
-export const GET_FORMULA    = 'GET_FORMULA'
-export const EDIT_FORMULA   = 'EDIT_FORMULA'
-export const DELETE_FORMULA = 'DELETE_FORMULA'
+// Action lifecycle handlers
+export const addFormulaHandler    = createLifecycleHandler('ADD_FORMULA')
+export const getFormulaHandler    = createLifecycleHandler('GET_FORMULA')
+export const editFormulaHandler   = createLifecycleHandler('EDIT_FORMULA')
+export const deleteFormulaHandler = createLifecycleHandler('DELETE_FORMULA')
 
 // Action dispatchers
 export const addFormula    = (formula) => ({ type: ADD_FORMULA,  formula })

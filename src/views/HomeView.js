@@ -11,8 +11,8 @@ view HomeView {
     <Formula
       class="hexagon"
       repeat={result}
-      name={formulas[_].name}
-      formula={formulas[_].formula}
+      name={formulas[_].get('name')}
+      formula={formulas[_].get('formula')}
       onClick={Flint.router.link('/formulas/' + _)}
     />
   </section>

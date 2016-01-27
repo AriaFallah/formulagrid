@@ -2,7 +2,6 @@ import Modal from 'react-modal'
 
 view SideNav {
   prop addFormula : Function
-  prop dispatch: Function
 
   let newFormula = false
 

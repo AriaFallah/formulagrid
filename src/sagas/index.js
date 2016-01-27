@@ -12,12 +12,20 @@ function* handleParse(entity, apiFn, options) {
   }
 }
 
-const getFormula = handleParse.bind(null, actions.formulaHandler, api.getFormula)
+const getFormula = handleParse.bind(null, actions.getFormulaHandler, api.getFormula)
+const addFormula = handleParse.bind(null, actions.addFormulaHandler, api.addFormula)
 
 function* formula() {
   while (true) {
-    const action = yield take(actions.GET_FORMULA)
-    yield call(getFormula)
+    const action = yield take([actions.GET_FORMULA, actions.ADD_FORMULA])
+    switch(action.type) {
+      case actions.GET_FORMULA:
+        yield call(getFormula, action.query)
+        break;
+      case actions.ADD_FORMULA:
+        yield call(addFormula, action.formula)
+        break;
+    }
   }
 }
 

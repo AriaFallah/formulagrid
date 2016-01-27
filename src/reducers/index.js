@@ -5,7 +5,7 @@ import * as actions from '../actions'
 const formulasReducer = (state = {}, action) => {
   switch(action.type) {
     case actions.FORMULA.RESOLVED:
-      return action.entities.formulas
+      return action.formulas
     case actions.FORMULA.REJECTED:
       return state
     default:
