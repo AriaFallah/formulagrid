@@ -1,20 +1,21 @@
 view HomeView {
   prop formulas : Object
-  prop order : Array
+  prop result : Array
   prop actions : Object
 
+  // Request the formulas from the server
   on.mount(actions.getFormula)
 
   <SearchBar />
-  {/*<section class="formulagrid">
+  <section class="formulagrid">
     <Formula
       class="hexagon"
-      repeat={order}
+      repeat={result}
       name={formulas[_].name}
       formula={formulas[_].formula}
       onClick={Flint.router.link('/formulas/' + _)}
     />
-  </section>*/}
+  </section>
 
   // TODO Add a table as an alternative to the grid
 

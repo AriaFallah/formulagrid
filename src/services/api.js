@@ -10,11 +10,15 @@ const FORMULA_CLASS = Parse.Object.extend('Formula')
 // Normalizr Schemas
 const formulaSchema = new Schema('formulas')
 
-function callApi(parseClass, method, options) {
+// Deal with parse bullshit
+const makeObject = (data) =>
+  normalize(data.map((d) => ({ id: d.id, ...d.attributes })), arrayOf(formulaSchema))
+
+function callApi(parseClass, method, options = {}) {
   switch(method) {
     case 'FIND':
       const query = new Parse.Query(parseClass)
-      return query.find().then((data) => normalize(data, arrayOf(formulaSchema)))
+      return query.find(options).then(makeObject)
     default:
       return null
   }
@@ -23,10 +27,15 @@ function callApi(parseClass, method, options) {
 // Create a class specific request
 const formulaRequest = callApi.bind(null, FORMULA_CLASS)
 
+// Create the API calls
 const addFormula    = (formula) => formulaRequest('', )
 const getFormula    = (query)   => formulaRequest('FIND', query)
 const editFormula   = (formula) => formulaRequest('', )
 const deleteFormula = (query)   => formulaRequest('', )
+
+export const classes = {
+  FORMULA_CLASS,
+}
 
 export default {
   addFormula,
