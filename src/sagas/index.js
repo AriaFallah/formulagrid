@@ -2,33 +2,62 @@ import { take, put, fork, call } from 'redux-saga'
 import * as actions from '../actions'
 import api from '../services/api'
 
-function* handleParse(entity, apiFn, options) {
-  yield put(entity.request(options))
+// Create lifecycle of a promise
+const createPromiseLifecycle = (base) => ({
+  PENDING:  `${base}_PENDING`,
+  RESOLVED: `${base}_RESOLVED`,
+  REJECTED: `${base}_REJECTED`
+})
+
+function* doPromise(action) {
+  const lifecycle = createPromiseLifecycle(action.type)
+
+  // Put out the fact the promise is pending
+  yield put({ type: lifecycle.PENDING })
+
+  // Try to resolve the promise
   try {
-    const response = yield call(apiFn, options)
-    yield put(entity.resolved(response))
+    const result = yield action.payload.promise
+    yield put ({
+      type: lifecycle.RESOLVED,
+      payload: {
+        ...result
+      }
+    })
   } catch(err) {
-    yield put(entity.rejected(err))
+    yield put ({
+      type: lifecycle.REJECTED,
+      payload: {
+        err
+      }
+    })
   }
 }
 
-const getFormula = handleParse.bind(null, actions.getFormulaHandler, api.getFormula)
-const addFormula = handleParse.bind(null, actions.addFormulaHandler, api.addFormula)
+function* apiCall() {
+  while(true) {
+    // Grab all actions with the API intention
+    const { type, payload: { method, options } } = yield take((action) => action[actions.API])
 
-function* formula() {
-  while (true) {
-    const action = yield take([actions.GET_FORMULA, actions.ADD_FORMULA])
-    switch(action.type) {
-      case actions.GET_FORMULA:
-        yield call(getFormula, action.query)
-        break;
-      case actions.ADD_FORMULA:
-        yield call(addFormula, action.formula)
-        break;
-    }
+    // Pass on the pending API call to the promise saga
+    yield fork(doPromise, {
+      type,
+      payload: {
+        promise: call(api[method], options)
+      }
+    })
+  }
+}
+
+function* promise() {
+  while(true) {
+    // Grab all actions with the PROMISE intention
+    const action = yield take((action) => action[actions.PROMISE])
+    yield fork(doPromise, action)
   }
 }
 
 export default function* root(getState) {
-  yield fork(formula)
+  yield fork(apiCall)
+  yield fork(promise)
 }

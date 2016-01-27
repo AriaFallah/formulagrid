@@ -5,7 +5,7 @@ view HomeView {
 
   // Request the formulas from the server
   on.mount(actions.getFormula)
-
+  
   <SearchBar />
   <section class="formulagrid">
     <Formula

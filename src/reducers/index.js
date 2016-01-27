@@ -4,9 +4,9 @@ import * as actions from '../actions'
 
 const formulasReducer = (state = {}, action) => {
   switch(action.type) {
-    case actions.FORMULA.RESOLVED:
-      return action.formulas
-    case actions.FORMULA.REJECTED:
+    case `${actions.GET_FORMULA}_RESOLVED`:
+      return action.payload.formulas
+    case `${actions.GET_FORMULA}_REJECTED`:
       return state
     default:
       return state
@@ -15,9 +15,9 @@ const formulasReducer = (state = {}, action) => {
 
 const resultReducer = (state = [], action) => {
   switch(action.type) {
-    case actions.FORMULA.RESOLVED:
-      return action.result
-    case actions.FORMULA.REJECTED:
+    case `${actions.GET_FORMULA}_RESOLVED`:
+      return action.payload.result
+    case `${actions.GET_FORMULA}_REJECTED`:
       return state
     default:
       return state

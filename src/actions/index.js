@@ -1,36 +1,51 @@
 import Parse from 'parse'
 
-// Flatten an action
-const action = (type, payload = {}) => ({ type, ...payload })
+// Action intentions
+// These define how to transform the payload of an action through sagas
+export const API = Symbol('API')
+export const PROMISE = Symbol('Promise')
 
-// Create lifecycle of an action
-const createActionLifecycle = (base) => ({
-  REQUEST:  `${base}_REQUEST`,
-  RESOLVED: `${base}_RESOLVED`,
-  REJECTED: `${base}_REJECTED`
-})
-
-// Each action is a request that resolves or rejects
-const createLifecycleHandler = (type) => ({
-  request:  (options)  => action(`${type}_REQUEST`,  { options }),
-  resolved: (response) => action(`${type}_RESOLVED`, { response }),
-  rejected: (error)    => action(`${type}_REJECTED`, { error }),
-})
-
-// Actions
-export const ADD_FORMULA    = createActionLifecycle('ADD_FORMULA')
-export const GET_FORMULA    = createActionLifecycle('GET_FORMULA')
-export const EDIT_FORMULA   = createActionLifecycle('EDIT_FORMULA')
-export const DELETE_FORMULA = createActionLifecycle('DELETE_FORMULA')
-
-// Action lifecycle handlers
-export const addFormulaHandler    = createLifecycleHandler('ADD_FORMULA')
-export const getFormulaHandler    = createLifecycleHandler('GET_FORMULA')
-export const editFormulaHandler   = createLifecycleHandler('EDIT_FORMULA')
-export const deleteFormulaHandler = createLifecycleHandler('DELETE_FORMULA')
+// Action types
+// These define different things the application can do
+export const ADD_FORMULA    = 'ADD_FORMULA'
+export const GET_FORMULA    = 'GET_FORMULA'
+export const EDIT_FORMULA   = 'EDIT_FORMULA'
+export const DELETE_FORMULA = 'DELETE_FORMULA'
 
 // Action dispatchers
-export const addFormula    = (formula) => ({ type: ADD_FORMULA,  formula })
-export const getFormula    = (query)   => ({ type: GET_FORMULA,    query })
-export const editFormula   = (formula) => ({ type: EDIT_FORMULA, formula })
-export const deleteFormula = (query)   => ({ type: DELETE_FORMULA, query })
+// These pass the actions along a pipeline that determines application state
+export const addFormula = (formula) => ({
+  [API]: true,
+  type: ADD_FORMULA,
+  payload: {
+    method: 'addFormula',
+    options: formula
+  }
+})
+
+export const getFormula = (query) => ({
+  [API]: true,
+  type: GET_FORMULA,
+  payload: {
+    method: 'getFormula',
+    options: query
+  }
+})
+
+export const editFormula = (formula) => ({
+  [API]: true,
+  type: EDIT_FORMULA,
+  payload: {
+    method: 'editFormula',
+    options: formula
+  }
+})
+
+export const deleteFormula = (query) => ({
+  [API]: true,
+  type: DELETE_FORMULA,
+  payload: {
+    method: 'deleteFormula',
+    options: query
+  }
+})
