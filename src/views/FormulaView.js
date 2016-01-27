@@ -3,7 +3,7 @@ view FormulaView {
   prop actions : Object
 
   const { id } = Flint.router.params
-  if (!formulas[id]) actions.getFormula(id)
+  if (!formulas[id]) actions.getFormula({ equalTo: [{ key: 'objectId', value: id }] })
 
   <div if={formulas[id]}>
     <h1>{formulas[id].get('name')}</h1>

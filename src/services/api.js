@@ -7,14 +7,21 @@ Parse.initialize("i0aPvQRmU9Cs94NMOkudjDIX67Y1X2dN4Aft502Q", "xtHn84kNOyGR3xvarc
 // Parse classes
 const FORMULA_CLASS = Parse.Object.extend('Formula')
 
-// Normalize a single level
-const makeObject = (data) => normalize(data, 'formulas')
+// Normalize the data
+const normalizeData = (data) => normalize(data, 'formulas')
+const buildQuery = (parseClass, options) => {
+  let query = new Parse.Query(parseClass)
+  if (options.equalTo) {
+    for (const x of options.equalTo) query = query.equalTo(x.key, x.value)
+  }
+  return query
+}
 
-function callApi(parseClass, method, options = {}) {
+const callApi = (parseClass, method, options = {}) => {
   const call = {
     FIND() {
-      const query = new Parse.Query(parseClass)
-      return query.find(options).then(makeObject)
+      const query = buildQuery(parseClass, options)
+      return query.find().then(normalizeData)
     },
     SAVE() {
       const entity = new parseClass()
