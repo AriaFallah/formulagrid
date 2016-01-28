@@ -12,13 +12,13 @@ view SideNav {
 
   <nav>
     <div onClick={() => newFormula = true}>
-      <div class="fa fa-plus"></div>
+      <i class="fa fa-plus"></i>
       <span>new</span>
     </div>
-    <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank">
-      <div class="fa fa-info"></div>
-      <span>help</span>
-    </a>
+    <div class="login">
+      <i class="fa fa-sign-in"></i>
+      <span>login</span>
+    </div>
   </nav>
 
   <Modal
@@ -56,7 +56,8 @@ view SideNav {
   }
 
   $div = {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginTop: 25
   }
 
   $header = {
@@ -88,12 +89,6 @@ view SideNav {
     color: 'rgb(255, 255, 255)',
     display: 'block',
     fontSize: '2em',
-  }
-
-  $a = {
-    display: 'block',
-    marginTop: 20,
-    cursor: 'pointer'
   }
 
   $span = {

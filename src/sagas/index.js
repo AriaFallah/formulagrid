@@ -39,7 +39,7 @@ function* apiCall() {
     // Grab all actions with the API intention
     const { type, payload: { method, options } } = yield take((action) => action[actions.API])
 
-    // Pass on the pending API call to the promise saga
+    // Pass on the pending API call to the promise handler
     yield fork(handlePromise, {
       type,
       payload: {
