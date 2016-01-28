@@ -3,6 +3,8 @@ import Modal from 'react-modal'
 view SideNav {
   prop addFormula : Function
 
+  let login = false
+  let signup = false
   let newFormula = false
 
   <header onClick={Flint.router.link('/')}>
@@ -15,7 +17,7 @@ view SideNav {
       <i class="fa fa-plus"></i>
       <span>new</span>
     </div>
-    <div class="login">
+    <div onClick={() => login = true} class="login">
       <i class="fa fa-sign-in"></i>
       <span>login</span>
     </div>
@@ -28,6 +30,22 @@ view SideNav {
     style={modalStyle}
   >
     <NewFormulaForm onSubmit={closeAndSubmit} />
+  </Modal>
+
+  <Modal
+    isOpen={login}
+    onRequestClose={() => login = false}
+    closeTimeoutMS={200}
+    style={modalStyle}
+  >
+    <section if={!signup}>
+      <LoginForm onSubmit={(data) => console.log(data)} />
+      <a onClick={() => signup = true}>Sign Up!</a>
+    </section>
+    <section if={signup}>
+      <SignupForm onSubmit={(data) => console.log(data)} />
+      <a onClick={() => signup = false}>Back</a>
+    </section>
   </Modal>
 
   function closeAndSubmit(data) {

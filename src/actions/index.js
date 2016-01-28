@@ -10,6 +10,7 @@ export const PROMISE = Symbol('Promise')
 
 // Authentication
 export const LOGIN  = 'LOGIN'
+export const SIGNUP = 'SIGNUP'
 export const LOGOUT = 'LOGUT'
 
 // Formula CRUD
@@ -23,6 +24,12 @@ export const DELETE_FORMULA = 'DELETE_FORMULA'
 export const login = () => ({
   [API]: true,
   type: LOGIN,
+  payload: {}
+})
+
+export const signUp = () => ({
+  [API]: true,
+  type: SIGNUP,
   payload: {}
 })
 

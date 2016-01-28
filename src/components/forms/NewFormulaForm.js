@@ -3,26 +3,24 @@ import { reduxForm } from 'redux-form'
 const fields = ['name', 'formula']
 
 Flint._decorateView('NewFormulaForm', (form) =>
-  reduxForm({ form: 'newFormula', fields })(form)
+  reduxForm({ form: 'NewFormula', fields })(form)
 )
 
 view NewFormulaForm {
-  const { fields: { name, formula }, submitting, handleSubmit } = this.props
+  const { fields: { name, formula }, handleSubmit } = this.props
   <form>
     <div>
       <label>Name</label>
       <div>
-        <input ref="name" type="text" placeholder="Name" {...name}/>
+        <input ref="name" type="text" placeholder="Name" {...name} />
       </div>
     </div>
     <div>
       <label>Formula</label>
       <div>
-        <input type="text" placeholder="Formula" {...formula}/>
+        <input type="text" placeholder="Formula" {...formula} />
       </div>
     </div>
-    <button onClick={handleSubmit}>
-    Submit
-    </button>
+    <button onClick={handleSubmit}>Submit</button>
   </form>
 }

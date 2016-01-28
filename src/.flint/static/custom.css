@@ -1,4 +1,5 @@
-input[type=text]
+input[type=text],
+input[type=password]
 {
     font-size: .875rem;
 
@@ -20,7 +21,9 @@ input[type=text]
     appearance: none;
 }
 input[type=text]:focus,
-input[type=text]:active
+input[type=text]:active,
+input[type=password]:focus,
+input[type=password]:active
 {
     border-color: rgb(88, 180, 255);
     outline: 0;
