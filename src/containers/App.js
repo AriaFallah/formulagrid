@@ -17,11 +17,11 @@ Flint._decorateView('App', (app) =>
 )
 
 view App {
-  prop actions : Object
+  prop actions  : Object
   prop formulas : Object
-  prop result : Array
+  prop result   : Array
 
-  <SideNav addFormula={actions.addFormula} />
+  <SideNav actions={actions} />
   <HomeView route='/' yield />
   <FormulaView route='/formulas/:id' yield />
 

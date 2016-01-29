@@ -1,11 +1,20 @@
 import Modal from 'react-modal'
 
 view SideNav {
-  prop addFormula : Function
+  prop actions : Object
 
-  let login = false
-  let signup = false
-  let newFormula = false
+  let showLogin = false
+  let showSignUp = false
+  let showAddFormula = false
+
+  function closeAndSubmit(fn, variable, data) {
+    actions[fn](data)
+    variable = false
+  }
+
+  const handleLogin      = closeAndSubmit.bind(null, 'login', showLogin)
+  const handleSignUp     = closeAndSubmit.bind(null, 'signUp', showSignUp)
+  const handleAddFormula = closeAndSubmit.bind(null, 'addFormula', showAddFormula)
 
   <header onClick={Flint.router.link('/')}>
     <img class="overlayLogo" src="http://i.imgur.com/CNO4xjs.png"/>
@@ -13,45 +22,40 @@ view SideNav {
   </header>
 
   <nav>
-    <div onClick={() => newFormula = true}>
+    <div onClick={() => showAddFormula = true}>
       <i class="fa fa-plus"></i>
       <span>new</span>
     </div>
-    <div onClick={() => login = true} class="login">
+    <div onClick={() => showLogin = true} class="login">
       <i class="fa fa-sign-in"></i>
       <span>login</span>
     </div>
   </nav>
 
   <Modal
-    isOpen={newFormula}
-    onRequestClose={() => newFormula = false}
+    isOpen={showAddFormula}
+    onRequestClose={() => showAddFormula = false}
     closeTimeoutMS={200}
     style={modalStyle}
   >
-    <NewFormulaForm onSubmit={closeAndSubmit} />
+    <AddFormulaForm onSubmit={handleAddFormula} />
   </Modal>
 
   <Modal
-    isOpen={login}
-    onRequestClose={() => login = false}
+    isOpen={showLogin}
+    onRequestClose={() => showLogin = false}
     closeTimeoutMS={200}
     style={modalStyle}
   >
-    <section if={!signup}>
-      <LoginForm onSubmit={(data) => console.log(data)} />
-      <a onClick={() => signup = true}>Sign Up!</a>
+    <section if={!showSignUp}>
+      <LoginForm onSubmit={handleLogin} />
+      <a onClick={() => showSignUp = true}>Sign Up!</a>
     </section>
-    <section if={signup}>
-      <SignupForm onSubmit={(data) => console.log(data)} />
-      <a onClick={() => signup = false}>Back</a>
+    <section if={showSignUp}>
+      <SignupForm onSubmit={handleSignUp} />
+      <a onClick={() => showSignUp = false}>Back</a>
     </section>
   </Modal>
-
-  function closeAndSubmit(data) {
-    addFormula(data)
-    newFormula = false
-  }
 
   const modalStyle = {
     content: {

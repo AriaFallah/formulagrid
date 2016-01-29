@@ -21,22 +21,30 @@ export const DELETE_FORMULA = 'DELETE_FORMULA'
 
 // Action dispatchers
 // These pass the actions along a pipeline that determines application state
-export const login = () => ({
+export const login = (info) => ({
   [API]: true,
   type: LOGIN,
-  payload: {}
+  payload: {
+    method: 'login',
+    options: info
+  }
 })
 
-export const signUp = () => ({
+export const signUp = (info) => ({
   [API]: true,
   type: SIGNUP,
-  payload: {}
+  payload: {
+    method: 'signUp',
+    options: info
+  }
 })
 
 export const logout = () => ({
   [API]: true,
   type: LOGOUT,
-  payload: {}
+  payload: {
+    method: 'logut'
+  }
 })
 
 export const addFormula = (formula) => ({
