@@ -3,17 +3,18 @@ import Modal from 'react-modal'
 view SideNav {
   prop actions : Object
 
-  let showLogin = false
   let showSignUp = false
   let showAddFormula = false
+
+  on.mount(() => {
+    view.lock = new Auth0Lock('0cUJF1X5QmrXTsVKdL9CqorbW4SnjbZd', 'aria.auth0.com')
+  })
 
   function closeAndSubmit(fn, variable, data) {
     actions[fn](data)
     variable = false
   }
 
-  const handleLogin      = closeAndSubmit.bind(null, 'login', showLogin)
-  const handleSignUp     = closeAndSubmit.bind(null, 'signUp', showSignUp)
   const handleAddFormula = closeAndSubmit.bind(null, 'addFormula', showAddFormula)
 
   <header onClick={Flint.router.link('/')}>
@@ -26,7 +27,7 @@ view SideNav {
       <i class="fa fa-plus"></i>
       <span>new</span>
     </div>
-    <div onClick={() => showLogin = true} class="login">
+    <div onClick={() => view.lock.show()} class="login">
       <i class="fa fa-sign-in"></i>
       <span>login</span>
     </div>
@@ -39,22 +40,6 @@ view SideNav {
     style={modalStyle}
   >
     <AddFormulaForm onSubmit={handleAddFormula} />
-  </Modal>
-
-  <Modal
-    isOpen={showLogin}
-    onRequestClose={() => showLogin = false}
-    closeTimeoutMS={200}
-    style={modalStyle}
-  >
-    <section if={!showSignUp}>
-      <LoginForm onSubmit={handleLogin} />
-      <a onClick={() => showSignUp = true}>Sign Up!</a>
-    </section>
-    <section if={showSignUp}>
-      <SignupForm onSubmit={handleSignUp} />
-      <a onClick={() => showSignUp = false}>Back</a>
-    </section>
   </Modal>
 
   const modalStyle = {
