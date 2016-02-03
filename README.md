@@ -1,3 +1,3 @@
-# FormulaGrid
+# FormulaGrid :school:
 
-Realtime formula database
+Formula database 
