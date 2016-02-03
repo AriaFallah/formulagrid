@@ -1,6 +1,5 @@
 .internal
 build
 node_modules
+npm-debug.*log.*
 .DS_Store
-npm-debug.log.*
-parse
