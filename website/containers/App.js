@@ -12,7 +12,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-Flint._decorateView('App', (app) =>
+Flint.decorateView('App', (app) =>
   connect(mapStateToProps, mapDispatchToProps)(app)
 )
 

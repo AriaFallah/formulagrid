@@ -2,7 +2,7 @@ import { reduxForm } from 'redux-form'
 
 const fields = ['name', 'formula']
 
-Flint._decorateView('AddFormulaForm', (form) =>
+Flint.decorateView('AddFormulaForm', (form) =>
   reduxForm({ form: 'AddFormula', fields })(form)
 )
 
