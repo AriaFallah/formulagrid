@@ -4,6 +4,8 @@
   "description": "Transpiling to ES6/ES7",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
+    "build:watch": "webpack --watch --progress",
     "test": "mocha --compilers js:babel-core/register",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src"
