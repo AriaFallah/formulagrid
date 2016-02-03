@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
 
   "rules": {
+    "comma-dangle": 0,
     "no-console": 0,
     "semi": [2, "never"],
     "func-names": 0,

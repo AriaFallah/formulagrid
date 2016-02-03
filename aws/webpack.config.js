@@ -2,7 +2,6 @@
 
 const fs = require('fs')
 const path = require('path')
-const webpack = require('webpack')
 
 function allDirectoryFiles() {
   return (
@@ -28,13 +27,6 @@ module.exports = {
     libraryTarget: 'commonjs2',
   },
   target: 'node',
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-      },
-    }),
-  ],
   module: {
     loaders: [{
       test: /\.js$/,
