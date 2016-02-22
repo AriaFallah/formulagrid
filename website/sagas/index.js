@@ -1,4 +1,4 @@
-import { take, put, fork, call } from 'redux-saga'
+import { take, put, fork, call } from 'redux-saga/effects'
 import * as actions from '../actions'
 import api from '../services/api'
 

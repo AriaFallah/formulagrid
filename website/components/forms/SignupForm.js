@@ -2,7 +2,7 @@ import { reduxForm } from 'redux-form'
 
 const fields = ['username', 'password', 'email']
 
-Flint.decorateView('SignupForm', (form) =>
+Motion.decorateView('SignupForm', (form) =>
   reduxForm({ form: 'Login', fields })(form)
 )
 

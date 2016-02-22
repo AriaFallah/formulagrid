@@ -13,7 +13,7 @@ view HomeView {
       repeat={result}
       name={formulas[_].get('name')}
       formula={formulas[_].get('formula')}
-      onClick={Flint.router.link('/formulas/' + _)}
+      onClick={Motion.router.link('/formulas/' + _)}
     />
     <div repeat={5}></div>
   </section>

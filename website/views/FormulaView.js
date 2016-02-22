@@ -2,7 +2,7 @@ view FormulaView {
   prop formulas : Object
   prop actions : Object
 
-  const { id } = Flint.router.params
+  const { id } = Motion.router.params
   if (!formulas[id]) actions.getFormula({ equalTo: [{ key: 'objectId', value: id }] })
 
   <section class="formula" if={formulas[id]}>

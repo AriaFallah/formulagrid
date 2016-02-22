@@ -17,7 +17,7 @@ view SideNav {
 
   const handleAddFormula = closeAndSubmit.bind(null, 'addFormula', showAddFormula)
 
-  <header onClick={Flint.router.link('/')}>
+  <header onClick={Motion.router.link('/')}>
     <img class="overlayLogo" src="http://i.imgur.com/CNO4xjs.png"/>
     <img class="backgroundLogo" src="http://i.imgur.com/uAndrvf.png"/>
   </header>

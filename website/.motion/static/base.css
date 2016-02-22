@@ -10,6 +10,10 @@ body * {
   display: block; /* for custom tags */
 }
 
+body style {
+  display: none;
+}
+
 /* Reset 2.0 */
 
 /*
