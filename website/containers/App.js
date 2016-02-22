@@ -21,9 +21,9 @@ view App {
   prop formulas : Object
   prop result   : Array
 
-  <SideNav actions={actions} />
-  <HomeView route='/' yield />
-  <FormulaView route='/formulas/:id' yield />
+  <HomePage route='/' yield />
+  <ExplorePage route='/explore' yield />
+  <FormulaPage route='/formulas/:id' yield />
 
   $ = {
     display: 'flex',

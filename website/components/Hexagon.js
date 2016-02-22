@@ -1,15 +1,10 @@
 import SVG from 'svgjs'
 
-view Formula {
-  prop name : String
-  prop formula : String
-
+view Hexagon {
   on.mount(() => drawHexagon(view.element()))
-
   <div onClick={view.props.onClick} class="overlay-container">
     <div class="content">
-      <span>{name}</span>
-      <span>{formula}</span>
+      {view.props.children}
     </div>
   </div>
 }
