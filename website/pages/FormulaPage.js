@@ -1,3 +1,6 @@
+import moment from 'moment'
+import { Editor } from 'draft-js'
+
 view FormulaPage {
   prop formulas : Object
   prop actions : Object
@@ -29,6 +32,12 @@ view FormulaPage {
         <tag class="item" repeat={formulas[id].tags}>{_}</tag>
       </list>
     </tags>
+    <footer>
+      <info>
+        Created By {formulas[id].createdBy} on {formulas[id].dateAdded.toString()};
+        Last Updated {formulas[id].lastUpdated.toString()}
+      </info>
+    </footer>
   </page>
 
   $ = {
@@ -42,5 +51,11 @@ view FormulaPage {
 
   $formula = {
     textAlign: 'center',
+  }
+
+  $info = {
+    fontStyle: 'italic',
+    fontSize: 12,
+    marginTop: 15
   }
 }

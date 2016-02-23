@@ -10,6 +10,10 @@ export default [
     }],
     dateAdded: new Date(),
     lastUpdated: new Date(),
-    official: true
+    createdBy: 'Aria',
+    collaborators: ['*'],
+    official: true,
+    upvotes: 0,
+    downvotes: 0
   }
 ]
