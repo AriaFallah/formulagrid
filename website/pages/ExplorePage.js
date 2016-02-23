@@ -6,22 +6,30 @@ view ExplorePage {
   prop actions : Object
 
   let activeTab = 'Popular'
-  const tabs = ['Popular', 'New']
+  const tabs = ['Popular', 'New', 'Featured']
 
   // Request the formulas from the server
-  on.mount(actions.getFormula)
+  on.mount(() => {
+    actions.getFormula()
+    view.lock = new Auth0Lock('0cUJF1X5QmrXTsVKdL9CqorbW4SnjbZd', 'aria.auth0.com')
+  })
 
   <explorePanel class="ui container">
     <h1>Explore</h1>
-    <tabList class="ui horizontal list">
-      <tab
-        repeat={tabs}
-        onClick={() => activeTab = _}
-        className={classNames('item', { activeTab: activeTab == _ })}
-      >
-        {_}
-      </tab>
-    </tabList>
+    <tabLists>
+      <exploration class="ui horizontal list">
+        <tab
+          repeat={tabs}
+          onClick={() => activeTab = _}
+          className={classNames('item', { activeTab: activeTab === _ })}
+        >
+          {_}
+        </tab>
+      </exploration>
+      <userControls class="ui horizontal right floated list">
+        <tab onClick={() => view.lock.show()} class="item">Login</tab>
+      </userControls>
+    </tabLists>
     <input type="text" placeholder="Search" />
   </explorePanel>
 
@@ -47,7 +55,7 @@ view ExplorePage {
     cursor: 'pointer'
   }
 
-  $tabList = {
+  $tabLists = {
     marginBottom: 20
   }
 
