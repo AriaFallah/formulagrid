@@ -9,7 +9,7 @@ view ExplorePage {
   const tabs = ['Popular', 'New', 'Featured']
 
   // Request the formulas from the server
-  actions.getFormula()
+  on.mount(actions.getFormula)
 
   // Initialize the Auth0 lock
   view.lock = new Auth0Lock('0cUJF1X5QmrXTsVKdL9CqorbW4SnjbZd', 'aria.auth0.com')
