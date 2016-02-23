@@ -10,7 +10,7 @@ view FormulaPage {
   <page class="ui container" if={formulas[id]}>
     <h1>{formulas[id].name}</h1>
     <div class="ui divider"></div>
-    <h2 class="formula">{formulas[id].formula}</h2>
+    <Tex class="formula">{formulas[id].formula}</Tex>
     <description>
       <h3>Description</h3>
       <div>{formulas[id].description}</div>
@@ -34,6 +34,10 @@ view FormulaPage {
   $ = {
     width: '100%',
     paddingTop: 20
+  }
+
+  $Tex = {
+    fontSize: 24,
   }
 
   $formula = {

@@ -8,6 +8,7 @@
   "scripts": {},
   "dependencies": {
     "classnames": "^2.2.3",
+    "katex": "^0.5.1",
     "react-redux": "^4.4.0",
     "redux": "^3.0.0",
     "redux-form": "^4.2.0",
