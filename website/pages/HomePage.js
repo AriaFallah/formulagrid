@@ -1,7 +1,5 @@
 view HomePage {
-  on.mount(() => {
-    view.lock = new Auth0Lock('0cUJF1X5QmrXTsVKdL9CqorbW4SnjbZd', 'aria.auth0.com')
-  })
+  view.lock = new Auth0Lock('0cUJF1X5QmrXTsVKdL9CqorbW4SnjbZd', 'aria.auth0.com')
 
   <Hexagon>
     <heading>FormulaGrid</heading>

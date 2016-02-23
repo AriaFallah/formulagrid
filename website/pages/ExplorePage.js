@@ -9,10 +9,10 @@ view ExplorePage {
   const tabs = ['Popular', 'New', 'Featured']
 
   // Request the formulas from the server
-  on.mount(() => {
-    actions.getFormula()
-    view.lock = new Auth0Lock('0cUJF1X5QmrXTsVKdL9CqorbW4SnjbZd', 'aria.auth0.com')
-  })
+  actions.getFormula()
+
+  // Initialize the Auth0 lock
+  view.lock = new Auth0Lock('0cUJF1X5QmrXTsVKdL9CqorbW4SnjbZd', 'aria.auth0.com')
 
   <explorePanel class="ui container">
     <h1>Explore</h1>
@@ -39,7 +39,7 @@ view ExplorePage {
       repeat={result}
       onClick={Motion.router.link('/formulas/' + _)}
     >
-      <span>{formulas[_].get('name')}</span>
+      <span>{formulas[_].name}</span>
     </Hexagon>
     <filler repeat={7}></filler>
   </formulagrid>

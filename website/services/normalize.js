@@ -6,9 +6,9 @@ export default function normalize(data, name) {
     }
   }
 
-  for (const x of data) {
-    normalized.result.push(x.id)
-    normalized[name][x.id] = x
+  for (let i = 0; i < data.length; ++i) {
+    normalized.result.push(i)
+    normalized[name][i] = data[i]
   }
 
   return normalized
