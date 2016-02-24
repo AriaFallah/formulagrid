@@ -6,7 +6,7 @@ export default [
     tags: ['Geometry'],
     resources: [{
       name: 'Area of a Rectangle',
-      link: 'http://google.com'
+      link: 'http://www.mathsisfun.com/area.html'
     }],
     dateAdded: new Date(),
     lastUpdated: new Date(),

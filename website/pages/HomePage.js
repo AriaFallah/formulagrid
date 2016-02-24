@@ -37,6 +37,7 @@ view HomePage {
 
   $heading = {
     fontSize: 24,
+    fontFamily: 'Open Sans',
     fontWeight: 300
   }
 
