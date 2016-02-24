@@ -9,7 +9,7 @@
     "build:website": "cd website && motion build --out ../build",
     "postbuild:website": "find build -type f -exec gzip -9 {} \\; -exec mv {}.gz {} \\;",
     "build": "npm run build:website",
-    "ci": "npm run build && git push",
+    "predeploy": "npm run build",
     "deploy": "aws s3 sync build s3://formulagrid.com"
   },
   "repository": {
@@ -24,5 +24,7 @@
   },
   "homepage": "https://github.com/AriaFallah/formulagrid#readme",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "motion": "^0.9.24"
+  }
 }
