@@ -8,6 +8,7 @@
     "prebuild:website": "rm -rf build",
     "build:website": "cd website && motion build --out ../build",
     "postbuild:website": "find build -type f -exec gzip -9 {} \\; -exec mv {}.gz {} \\;",
+    "build": "npm run build:website",
     "ci": "npm run build && git push",
     "deploy": "aws s3 sync build s3://formulagrid.com"
   },
