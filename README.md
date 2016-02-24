@@ -1,3 +1,3 @@
 # FormulaGrid :school:
 
-Formula database 
+Formula Database
