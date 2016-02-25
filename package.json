@@ -10,7 +10,7 @@
     "postbuild:website": "find build -type f -exec gzip -9 {} \\; -exec mv {}.gz {} \\;",
     "build": "npm run build:website",
     "predeploy": "npm run build",
-    "deploy": "aws s3 sync build s3://formulagrid.com"
+    "deploy": "aws s3 sync build s3://formulagrid.com --content-encoding gzip"
   },
   "repository": {
     "type": "git",
